@@ -20,6 +20,20 @@
 
         <ion-list *ngIf="loggedIn" lines="none">
           <ion-list-header>
+            Fun Stuff
+          </ion-list-header>
+          <ion-menu-toggle autoHide="false">
+            <ion-item routerLink="/chucknorris" routerLinkActive="active" routerDirection="root" detail="false">
+              <ion-icon slot="start" name="chatbox-outline"></ion-icon>
+              <ion-label>
+                Jokes
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+        <ion-list lines="none">
+          <ion-list-header>
             Account
           </ion-list-header>
 
