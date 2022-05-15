@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { first } from 'rxjs/operators'
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-chucknorris',
@@ -11,13 +12,14 @@ export class ChucknorrisPage implements OnInit {
   public Jokes: Array<string> = [];
 
   constructor(
-    private _apiService: ApiService
+    private _apiService: ApiService,
+    public toastCtrl: ToastController
   ) { }
 
   ngOnInit() {
   }
   
-  getJoke() {
+  async getJoke() {
     this._apiService.getJoke()
     .pipe(first())
     .subscribe(
@@ -31,6 +33,12 @@ export class ChucknorrisPage implements OnInit {
         console.error("Chuck Norris Jokesis not available.");
       }
     )
+
+    const toast = await this.toastCtrl.create({
+      message: 'You received a new joke to chuckle about.',
+      duration: 3000
+    });
+    await toast.present();
   }
  
 

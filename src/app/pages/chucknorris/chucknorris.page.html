@@ -9,24 +9,32 @@
 
 
 <ion-content fullscreen="true">
-  <ion-card> 
-    <div class="ion-padding">
-      <ion-button expand="block" color="light" (click)="getJoke()">get Joke</ion-button>
-    </div>
-    <ion-card-content class="ion-text-center" style="font-weight: bold; font-size: 16px; padding-bottom: 30px;">
-      {{ Jokes[0] }}
-    </ion-card-content>
+  <ion-button expand="block" color="light" (click)="getJoke()">get Joke</ion-button>
+
+  <ion-card *ngIf="Jokes.length > 0"> 
+      <ion-card-header>
+        <ion-card-title>Newest Joke</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="ion-text-center" style="font-weight: bold; font-size: 16px; padding-bottom: 30px;">
+        {{ Jokes[0] }}
+      </ion-card-content>
   </ion-card>
 
-  <ion-grid fixed>
-    <ion-row>
-      <ion-col size="12" size-md="4" *ngFor="let joke of Jokes | slice:1">
-        <ion-card> 
-          <ion-card-content class="ion-text-center">
-            {{ joke }}
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-card *ngIf="Jokes.length > 1"> 
+    <ion-card-header>
+      <ion-card-title>Last 3 Joke</ion-card-title>
+    </ion-card-header>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="12" size-md="4" *ngFor="let joke of Jokes | slice:1">
+          <ion-card> 
+            <ion-card-content class="ion-text-center">
+              {{ joke }}
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
 </ion-content>
